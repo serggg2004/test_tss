@@ -1,0 +1,85 @@
+docker run -d -p 8080:80 --name my-web-server -v ~/my_site:/usr/share/nginx/html nginx       монтирование докера и файла на сервере
+docker ps
+docker ps -a всех контейнеров запущенных и остановленных
+docker run hello-world сам запустится из docker hub
+
+sudo chown имя_пользователя:имя_группы файл.txt изменить пользователя группу
+
+chmod u+rw,g+r file.txt назначит права файлу
+
+sudo systemctl restart docker переззапустить докера. чтоб не перезагружать весь компьютер.
+
+newgrp docker обновляет  членсто в группах
+
+# создать группу docker
+sudo groupadd docker
+
+# вывести последние 10 строк из файла со списком групп
+tail /etc/group
+
+# добавить текущего пользователя в группу docker
+sudo usermod -aG docker $USER
+
+# вывести список групп пользователя itguy
+groups itguy
+
+# перезапустить службу docker
+sudo systemctl restart docker
+
+# перечитать список пользователей в группе docker
+newgrp docker
+
+# запустить контейнер hello-world
+sudo docker run hello-world
+
+# то же, но без указания прав root-пользователя
+docker run hello-world
+
+# запустить в фоновом режиме контейнер с документацией (на порту 80)
+docker run -dp 80:80 docker/getting-started
+
+# вывести список запущенных контейнеров
+docker ps
+
+# зайти на страницу локального сайта для просмотра документации (при запущенном предыдущем контейнере)
+http://localhost:80
+
+# остановить контейнер по его идентификатору
+docker stop <container_id>
+
+administrator@debian13:~$ docker exec -it elated_swanson /bin/bash
+
+# запуск терминала bash внутри контейнера
+docker exec -it <container_name> /bin/bash
+
+# вывод текущего имени пользователя
+whoami
+
+# поиск файла index.html
+find / -name index.html
+
+# вывод содержимого файла
+cat <filename>
+
+# удаление файла
+rm <filename>
+
+# перезапись содержимого файла (ввод с консоли)
+cat > <filename>
+              
+Другие примеры с docker exec
+# Получить интерактивную оболочку в контейнере
+docker exec -it my-container /bin/bash
+
+# Выполнить однократную команду
+docker exec my-container ls -la
+
+# Проверить процессы в контейнере
+docker exec my-container ps aux
+
+# Посмотреть логи приложения
+docker exec my-container tail -f /var/log/app.log
+
+docker cp /home/user/index.html ИМЯ_КОНТЕЙНЕРА:/usr/share/nginx/html/
+
+
